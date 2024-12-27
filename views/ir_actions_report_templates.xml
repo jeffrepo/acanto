@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="acanto_report_saleorder_document" inherit_id="sale.report_saleorder_document">
-        <xpath expr="//*[@class='row mt32 mb32']" position="replace">
+        <xpath expr="//*[@id='informations']" position="replace">
             <div class="row mt-4 mb-4" id="informations">
                 <div t-if="not doc.partner_id" class="col-auto col-3 mw-100 mb-2" name="informations_contact">
                     <strong>Cliente:</strong>
