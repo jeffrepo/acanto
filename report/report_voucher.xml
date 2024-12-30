@@ -13,13 +13,13 @@
                         </div>
                         <h2 style="text-align: center;">Voucher de pago</h2>
                         <br/><br/><br/><br/><br/><br/>
-                        <table style="width: 100%;">
+                        <table class="table table-borderless" style="width: 100%;">
                             <tr>
                                 <td style="width: 50%;">
                                     <h4 style="font-size: 1.5em;">Datos del pago</h4>
                                 </td>
                                 <td style="width: 50%; text-align: right;">
-                                    <table style="width: 100%;">
+                                    <table class="table table-borderless" style="width: 100%;">
                                         <tr>
                                             <td style="text-align: left; padding-left: 160px;">
                                                 <strong>Fecha:</strong> <t t-esc="o.fecha"/>
@@ -72,7 +72,7 @@
                         </table>
                         <div>
                             <strong>Detalle</strong>
-                            <table class="table table-sm">
+                            <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th>Descripción</th>
@@ -90,7 +90,7 @@
                             </table>
                         </div>                        
                         <hr style="border: 1.5px solid black;"/>
-                        <table style="width: 100%;">
+                        <table class="table table-borderless" style="width: 100%;">
                             <tr>
                                 <td style="width: 50%;">
                                     <h4 style="font-size: 1.5em;">Datos del cheque</h4>
@@ -101,7 +101,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 100%;">
-                                    <table style="width: 100%;">
+                                    <table class="table table-borderless" style="width: 100%;">
                                         <tr>
                                             <td style="width: 50%;">
                                                 <strong>Banco:</strong> <t t-esc="o.banco_id.name"/>
@@ -139,7 +139,7 @@
                             </tr>
                         </table>
                         <hr style="border: 1.5px solid black;"/>
-                        <table style="width: 100%;">
+                        <table class="table table-borderless" style="width: 100%;">
                             <tr>
                                 <td style="width: 33%; text-align: center;">
                                     <strong>Elaborado por:</strong><span t-field="user.name"/>
