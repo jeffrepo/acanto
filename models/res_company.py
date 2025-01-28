@@ -12,3 +12,4 @@ class ResCompany(models.Model):
     )
 
     anulado_libro_compras = fields.Boolean('Anulado libro compras')
+    feel_codigo_exportador = fields.Char('Codigo exportador')
