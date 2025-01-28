@@ -24,10 +24,10 @@
         #'views/crm_stage_views.xml',
         'report/report_metodo_pago.xml',
         'views/sale_order_views.xml',
-        'views/ir_actions_report_templates.xml',
+        #'views/ir_actions_report_templates.xml',
         'views/report.xml',
         'data/acanto_data.xml',
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
     ],
     'demo': [
     ],
