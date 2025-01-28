@@ -19,7 +19,7 @@
         #'views/crm_lead_views.xml',
         'views/purchase_order_views.xml',
         'report/report_contrasenia_pago.xml',
-        'views/res_company_views.xml',
+        #'views/res_company_views.xml',
         'views/account_payment_views.xml',
         #'views/crm_stage_views.xml',
         'report/report_metodo_pago.xml',
