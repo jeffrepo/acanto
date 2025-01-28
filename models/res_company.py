@@ -11,5 +11,4 @@ class ResCompany(models.Model):
         string='Horario de pago'
     )
 
-
-    
+    anulado_libro_compras = fields.Boolean('Anulado libro compras')
