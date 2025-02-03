@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models
-#from odoo.addons.num_to_words.models.numero_letras import numero_a_letras, numero_a_moneda
+from odoo.addons.num_to_words.models.numero_letras import numero_a_letras, numero_a_moneda
 
 class ReportVoucher(models.AbstractModel):
     _name = 'report.acanto.report_voucher'
