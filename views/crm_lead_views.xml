@@ -2,22 +2,20 @@
 <odoo>
     <data>
 
-        <record id="crm_lead_inherit_crm_extended" model="ir.ui.view">
-            <field name="name">crm.lead.view.form.inherit.crm.extended</field>
+        <record id="acanto_crm_lead_inherit_crm_extended" model="ir.ui.view">
+            <field name="name">acanto.crm.lead.view.form.inherit.crm.extended</field>
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='user_id']" position="after">
                     <field name="saldo" widget="monetary"/>
                     <field name="plazo_pago"/>
+                    <field name="company_id"/>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                         <attribute name="groups">acanto.cliente_lead</attribute>
                 </xpath>
-                <xpath expr="//button[@name='action_sale_quotations_new']" position="replace">
-                  <button string="Nuevo presupuesto" name="action_sale_quotations_new" type="object" class="oe_highlight" data-hotkey="q" title="Create new quotation" attrs="{'invisible': ['&amp;', ('probability', '=', 0), ('active', '=', False)]}"/>
-               </xpath>
-                <xpath expr="//page[@name='lead']" position="after">
+                <xpath expr="//page[@name='crm_lead_view_form']" position="after">
                     <page string="Productos vendidos" name="productos_vendidos">
                         <group>
                             <field name="fecha_inicio"/>
@@ -30,6 +28,7 @@
                                     <field name="name"/>
                                     <field name="quantity"/>
                                     <field name="price_unit"/>
+                                    <field name="company_id"/>
                                  </tree>
                             </field>
                         </group>
