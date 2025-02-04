@@ -15,7 +15,7 @@
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                         <attribute name="groups">acanto.cliente_lead</attribute>
                 </xpath>
-                <xpath expr="//page[@name='crm_lead_view_form']" position="after">
+                <xpath expr="//page[@name='extra']" position="after">
                     <page string="Productos vendidos" name="productos_vendidos">
                         <group>
                             <field name="fecha_inicio"/>
