@@ -16,7 +16,7 @@
         'views/acanto_view.xml',
         'report/report_voucher.xml',
         'security/security.xml',
-        #'views/crm_lead_views.xml',
+        'views/crm_lead_views.xml',
         'views/purchase_order_views.xml',
         'report/report_contrasenia_pago.xml',
         #'views/res_company_views.xml',
