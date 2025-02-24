@@ -40,7 +40,7 @@ class CRMLead(models.Model):
                 ('move_id.invoice_date', '>=', self.fecha_inicio),
                 ('move_id.invoice_date', '<=', self.fecha_final),
                 ('move_id.partner_id', '=', self.partner_id.id),
-                ('account_id.user_type_id.name', '=', 'Ingreso'),
+                ('account_id.account_type', '=', 'income'),
                 ('price_subtotal', '>', 0),
             ],order="date ASC")
             self.productos_vendidos_ids = [(6, 0, move_lines.ids)]
