@@ -15,6 +15,11 @@
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                         <attribute name="groups">acanto.cliente_lead</attribute>
                 </xpath>
+                <xpath expr="//button[@name='action_sale_quotations_new']" position="replace">
+                    <button string="Crear cotización" name="action_sale_quotations_new" type="object" class="oe_highlight" data-hotkey="q"
+                        title="Create new quotation"
+                        invisible="probability == 0 and not active"/>
+               </xpath>
                 <xpath expr="//page[@name='extra']" position="after">
                     <page string="Productos vendidos" name="productos_vendidos">
                         <group>
