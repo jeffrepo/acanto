@@ -50,3 +50,8 @@ class AccountMove(models.Model):
                 res['id_receptor'] = "CF"
                 res['tipo_especial'] = False
         return res
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    discounted_product = fields.Float(string='Discounted Product', store=True)

@@ -24,3 +24,10 @@ class SaleOrderLine(models.Model):
         "Margin", groups="base.group_erp_manager")
     margin_percent = fields.Float(
         "Margin (%)", groups="base.group_erp_manager")
+    discounted_product = fields.Float(string='Discounted Product', store=True)
+
+
+    def _prepare_invoice_line(self, **optional_values):
+        res = super()._prepare_invoice_line()
+        res["discounted_product"] = self.discounted_product
+        return res

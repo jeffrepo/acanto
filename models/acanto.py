@@ -35,3 +35,14 @@ class AcantoVoucherLinea(models.Model):
     voucher_id = fields.Many2one('acanto.voucher', string="Voucher")
     name = fields.Char('Descripcion')
     total = fields.Float('Total')
+
+class StockRuleInherit(models.Model):
+    _inherit = 'stock.rule'
+
+    def _get_stock_move_values(self, product_id, product_qty, product_uom, location_dest_id, name, origin, company_id, values):
+        res = super()._get_stock_move_values(product_id, product_qty, product_uom, location_dest_id, name, origin, company_id, values)
+
+        sale_line_id = self.env["sale.order.line"].search([("id","=", values["sale_line_id"])])
+        if sale_line_id:
+            res['product_uom_qty'] = product_qty + sale_line_id.discounted_product
+        return res
