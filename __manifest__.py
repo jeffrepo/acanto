@@ -20,6 +20,7 @@
         'views/purchase_order_views.xml',
         'report/report_contrasenia_pago.xml',
         'views/res_partner_views.xml',
+        'views/account_followup_views.xml',
         #'views/res_company_views.xml',
         'views/account_payment_views.xml',
         #'views/crm_stage_views.xml',
