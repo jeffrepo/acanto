@@ -54,4 +54,4 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    discounted_product = fields.Float(string='Discounted Product', store=True)
+    discounted_product = fields.Float(string='Bonificación', store=True)

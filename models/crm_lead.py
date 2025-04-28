@@ -1,4 +1,5 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+from collections import defaultdict
 
 
 class CRMLead(models.Model):
@@ -21,7 +22,76 @@ class CRMLead(models.Model):
     productos_vendidos_ids = fields.Many2many('account.move.line')
     saldo = fields.Monetary('Saldo', compute= _calcular_saldo)
     currency_id = fields.Many2one(related='company_id.currency_id', depends=["company_id"], store=True)
+    unpaid_invoice_ids = fields.One2many('account.move', compute='_compute_unpaid_invoices')
+    unpaid_invoices_count = fields.Integer(compute='_compute_unpaid_invoices')
+    unreconciled_aml_ids = fields.One2many('account.move.line', compute='_compute_total_due', readonly=False)
+    invoice_ids = fields.One2many('account.move',related='partner_id.invoice_ids', string='Invoices', readonly=True, copy=False)
+    total_due = fields.Monetary(groups='account.group_account_readonly,account.group_account_invoice,sales_team.group_sale_salesman')
 
+
+    def _compute_unpaid_invoices(self):
+        for lead in self:
+            if lead.partner_id:
+                partners_unpaid_receivable_lines = self.env['account.move.line'].search([
+                    ('company_id', 'child_of', self.env.company.id),
+                    ('move_id.commercial_partner_id', 'in', [lead.partner_id.id]),
+                    ('parent_state', '=', 'posted'),
+                    ('move_id.payment_state', 'in', ('not_paid', 'partial')),
+                    ('move_id.move_type', 'in', self.env['account.move'].get_sale_types()),
+                    ('account_id.account_type', '=', 'asset_receivable'),
+                ]).grouped(lambda line: line.move_id.commercial_partner_id.id)
+                unpaid_receivable_lines = partners_unpaid_receivable_lines.get(partner.id, self.env['account.move.line'])
+                unpaid_invoices = unpaid_receivable_lines.move_id
+                lead.unpaid_invoice_ids = unpaid_invoices
+                lead.unpaid_invoices_count = len(unpaid_invoices)
+    
+    @api.depends('invoice_ids')
+    @api.depends_context('company', 'allowed_company_ids')
+    def _compute_total_due(self):
+        due_data = defaultdict(float)
+        overdue_data = defaultdict(float)
+        unreconciled_aml_ids = defaultdict(list)
+        for overdue, partner, blocked, amount_residual_sum, aml_ids in self.env['account.move.line']._read_group(
+            domain=self._get_unreconciled_aml_domain(),
+            groupby=['followup_overdue', 'partner_id', 'blocked'],
+            aggregates=['amount_residual:sum', 'id:array_agg'],
+        ):
+            unreconciled_aml_ids[partner] += aml_ids
+            if not blocked:
+                due_data[partner] += amount_residual_sum
+                if overdue:
+                    overdue_data[partner] += amount_residual_sum
+
+        for lead in self:
+            lead.total_due = due_data.get(partner, 0.0)
+            lead.total_overdue = overdue_data.get(partner, 0.0)
+            lead.unreconciled_aml_ids = self.env['account.move.line'].browse(unreconciled_aml_ids.get(partner, []))
+
+    def open_sale_product_wizard(self):
+        self.ensure_one()
+        wiz = self.env['acanto.productos_vendidos.wizard'].create({'cliente_id': self.partner_id.id})
+        return {
+            'name': "Productos vendidos",
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'view': [(self.env.ref('acanto.view_acanto_productos_vendidos_wizard_form').id, 'form')],
+            'view_id': self.env.ref('acanto.view_acanto_productos_vendidos_wizard_form').id,
+            'res_model': 'acanto.productos_vendidos.wizard',
+            'target': 'new',
+            'res_id': wiz.id,
+        }
+    
+    def open_action_followup(self):
+        self.ensure_one()
+        return {
+            'name': _("Overdue Payments for %s", self.display_name),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'views': [[self.env.ref('account_followup.customer_statements_form_view').id, 'form']],
+            'res_model': 'res.partner',
+            'res_id': self.partner_id.id,
+        }
+        
     @api.depends('partner_id')
     def _compute_name(self):
         for lead in self:

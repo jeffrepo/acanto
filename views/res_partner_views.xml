@@ -12,4 +12,22 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="acanto_res_partner_view_form">
+        <field name="name">acanto.res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account_followup.res_partner_view_form"/>
+        <field name="arch" type="xml">
+            
+            <button name="open_action_followup" position="attributes">
+                <!-- <button groups="sales_team.group_sale_salesman" type="object" class="oe_stat_button" name="open_action_followup" icon="fa-list" invisible="total_due == 0">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="total_due" widget='monetary' options="{'currency_field': 'currency_id'}"/></span>
+                        <span class="o_stat_text">Due</span>
+                    </div>
+                    </button> -->
+                 <attribute name="groups">sales_team.group_sale_salesman</attribute>
+            </button>
+        </field>
+    </record>
+    
 </odoo>

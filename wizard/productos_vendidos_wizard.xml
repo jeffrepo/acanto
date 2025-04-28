@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_acanto_productos_vendidos_wizard_form" model="ir.ui.view">
+        <field name="name">acanto.productos.vendidos.wizard.form</field>
+        <field name="model">acanto.productos_vendidos.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Productos vendidos">
+                <sheet>
+                <group>
+                    <field name="fecha_inicio" string="Fecha inicio"/>
+                    <field name="fecha_fin" string="Fecha fin"/>
+                </group>
+                </sheet>
+                <footer>
+                    <button name="confirm_action" type="object" string="Generar reporte" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_productos_vendidos_wizard" model="ir.actions.act_window">
+        <field name="name">Productos vendidos</field>
+        <field name="res_model">acanto.productos_vendidos.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_acanto_productos_vendidos_wizard_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="crm.model_crm_lead"/>
+    </record>
+        
+</odoo>

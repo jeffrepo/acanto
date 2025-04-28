@@ -10,3 +10,4 @@ from . import res_company
 from . import acanto
 from . import sale_report
 from . import crm_stage
+from . import res_partner

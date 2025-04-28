@@ -7,10 +7,23 @@
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
+                <button name="action_set_won_rainbowman" position="after">
+                    <button name="open_sale_product_wizard" type="object" string="Productos vendidos"/>
+                </button>
                 <xpath expr="//field[@name='user_id']" position="after">
-                    <field name="saldo" widget="monetary"/>
-                    <field name="plazo_pago"/>
-                    <field name="company_id"/>
+                        <label for="saldo"/>
+                        <div class="o_row">
+                            <button name="open_action_followup" type="object" string="Info"/>
+                            <field name="saldo"/>
+                        </div>
+                        <label for="plazo_pago"/>
+                        <div class="o_row o_row_readonly">
+                            <field name="plazo_pago"/>
+                        </div>
+                        <label for="company_id"/>
+                        <div class="o_row o_row_readonly">
+                            <field name="company_id"/>
+                        </div>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="attributes">
                         <attribute name="groups">acanto.cliente_lead</attribute>
@@ -20,7 +33,7 @@
                         title="Create new quotation"
                         invisible="probability == 0 and not active"/>
                </xpath>
-                <xpath expr="//page[@name='extra']" position="after">
+                <!-- <xpath expr="//page[@name='extra']" position="after">
                     <page string="Productos vendidos" name="productos_vendidos">
                         <group>
                             <field name="fecha_inicio"/>
@@ -38,7 +51,7 @@
                             </field>
                         </group>
                     </page>
-                </xpath>
+                </xpath> -->
             </field>
         </record>
 

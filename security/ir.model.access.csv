@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_acanto_voucher,acanto.voucher,model_acanto_voucher,base.group_user,1,1,1,1
+access_acanto_account_followup_followup.line,account_followup.followup.line,account_followup.model_account_followup_followup_line,sales_team.group_sale_salesman,1,0,0,0
+access_acanto_account_root,account.root,account.model_account_root,sales_team.group_sale_salesman,1,0,1,0

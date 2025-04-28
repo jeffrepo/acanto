@@ -13,6 +13,7 @@
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="before">
                     <field name="discounted_product"/>
+                    <field name="ultimo_precio_venta" readonly="True" force_save="1"/>
                 </xpath>
             </field>
         </record>

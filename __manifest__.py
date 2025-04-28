@@ -10,7 +10,7 @@
     'website': "",
     'category': 'Uncategorized',
     'version': '0.1',
-    'depends': ['crm','base','account','infilefel','purchase','sale','sale_crm','sale_margin'],
+    'depends': ['crm','base','account','infilefel','purchase','sale','sale_crm','sale_margin', 'account_followup', 'sales_team'],
     'data': [
         'views/account_move_views.xml',
         'views/acanto_view.xml',
@@ -28,7 +28,8 @@
         #'views/ir_actions_report_templates.xml',
         'views/report.xml',
         'data/acanto_data.xml',
-        #'security/ir.model.access.csv',
+        'wizard/productos_vendidos_wizard.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],

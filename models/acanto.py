@@ -46,3 +46,15 @@ class StockRuleInherit(models.Model):
         if sale_line_id:
             res['product_uom_qty'] = product_qty + sale_line_id.discounted_product
         return res
+
+
+from odoo import models, fields
+
+class AcantoProductosVendidos(models.TransientModel):
+    _name = 'acanto.productos_vendidos'
+    
+    fecha = fields.Date(string="Fecha")
+    factura_id = fields.Many2one("account.move", string="Factura")
+    producto_id = fields.Many2one("product.product",string="Producto")
+    cantidad = fields.Float("Cantidad")
+    precio_unitario = fields.Float("Precio unitario")
