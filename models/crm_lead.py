@@ -27,7 +27,7 @@ class CRMLead(models.Model):
     unreconciled_aml_ids = fields.One2many('account.move.line', compute='_compute_total_due', readonly=False)
     invoice_ids = fields.One2many('account.move',related='partner_id.invoice_ids', string='Invoices', readonly=True, copy=False)
     total_due = fields.Monetary(groups='account.group_account_readonly,account.group_account_invoice,sales_team.group_sale_salesman')
-
+    amount_credit_limit = fields.Monetary(string='Credit Limit', related='partner_id.amount_credit_limit')
 
     def _compute_unpaid_invoices(self):
         for lead in self:

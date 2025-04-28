@@ -10,7 +10,7 @@
     'website': "",
     'category': 'Uncategorized',
     'version': '0.1',
-    'depends': ['crm','base','account','infilefel','purchase','sale','sale_crm','sale_margin', 'account_followup', 'sales_team'],
+    'depends': ['crm','base','account','infilefel','purchase','sale','sale_crm','sale_margin', 'account_followup', 'sales_team', 'om_credit_limit'],
     'data': [
         'views/account_move_views.xml',
         'views/acanto_view.xml',

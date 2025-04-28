@@ -11,6 +11,7 @@
                     <button name="open_sale_product_wizard" type="object" string="Productos vendidos"/>
                 </button>
                 <xpath expr="//field[@name='user_id']" position="after">
+                        <field name="amount_credit_limit"/>
                         <label for="saldo"/>
                         <div class="o_row">
                             <button name="open_action_followup" type="object" string="Info"/>
