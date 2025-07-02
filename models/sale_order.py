@@ -23,10 +23,11 @@ class SaleOrder(models.Model):
         for order in self:
             order_amount_untax = 0
             for line in order.order_line:
-                prince_unit_untax = line.price_subtotal / line.product_uom_qty
-                final_qty = line.product_uom_qty + line.discounted_product
-                #order_amount_untax += (prince_unit_untax * final_qty)
-                order_amount_untax += (line.price_subtotal)
+                if line.product_uom_qty > 0:
+                    prince_unit_untax = line.price_subtotal / line.product_uom_qty
+                    #final_qty = line.product_uom_qty + line.discounted_product
+                    #order_amount_untax += (prince_unit_untax * final_qty)
+                    order_amount_untax += (line.price_subtotal)
             logging.warning("_compute_margin")
             logging.warning(order_amount_untax)
             order.margin = sum(order.order_line.mapped('margin'))
