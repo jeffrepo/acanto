@@ -66,7 +66,15 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record id="action_mail_message" model="ir.actions.act_window">
+            <field name="name">Detalles</field>
+            <field name="res_model">mail.message</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
         <menuitem id="acanto_voucher" name="Voucher" parent="account.menu_finance_payables" action="action_voucher" sequence="100"/>
+        <menuitem id="acanto_mail_message" name="Mail message" parent="crm.crm_menu_report" action="action_mail_message" sequence="100"/>
 
     </data>
 </odoo>
