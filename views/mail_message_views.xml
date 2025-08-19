@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="acanto_view_message_tree">
+            <field name="name">acanto.mail.message.tree</field>
+            <field name="model">mail.message</field>
+            <field name="inherit_id" ref="mail.view_message_tree"/>
+            <field name="arch" type="xml">
+                <field name="subject" position="after">
+                    <field name="lead_id"/>
+                    <field name="stage_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

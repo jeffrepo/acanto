@@ -27,6 +27,7 @@
         'report/report_metodo_pago.xml',
         'views/sale_order_views.xml',
         #'views/ir_actions_report_templates.xml',
+        'views/mail_message_views.xml',
         'views/report.xml',
         'views/product_views.xml',
         'views/product_template_views.xml',

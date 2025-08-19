@@ -5,6 +5,7 @@ class MailMessage(models.Model):
     _inherit = 'mail.message'
 
     lead_id = fields.Many2one('crm.lead','Lead', compute="_compute_lead", store=True)
+    stage_id = fields.Many2one('crm.stage','Estapa', related='lead_id.stage_id', store=True)
 
     @api.depends('model')
     def _compute_lead(self):
