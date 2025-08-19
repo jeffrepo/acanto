@@ -1,6 +1,18 @@
 from odoo import fields, models, api, _
 from collections import defaultdict
 
+class MailMessage(models.Model):
+    _inherit = 'mail.message'
+
+    lead_id = fields.Many2one('crm.lead','Lead', compute="_compute_lead", store=True)
+
+    @api.depends('model')
+    def _compute_lead(self):
+        for m in self:
+            if m.model == 'crm.lead':
+                lead_id = self.env['crm.lead'].search([('id','=',int(m.res_id))])
+                if lead_id:
+                    m.lead_id = lead_id.id
 
 class CRMLead(models.Model):
     _inherit = 'crm.lead'
