@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="acanto_product_product_tree_view" model="ir.ui.view">
+        <field name="name">acanto.product.product.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="replace">
+                <field name="standard_price" optional="show" groups='__export__.res_groups_111_9854585c'/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

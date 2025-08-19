@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="acanto_product_template_tree_view" model="ir.ui.view">
+        <field name="name">acanto.product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="replace">
+                <field name="standard_price" groups='__export__.res_groups_111_9854585c' widget='monetary' options="{'currency_field': 'cost_currency_id'}" optional="show" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

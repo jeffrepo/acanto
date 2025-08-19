@@ -28,6 +28,8 @@
         'views/sale_order_views.xml',
         #'views/ir_actions_report_templates.xml',
         'views/report.xml',
+        'views/product_views.xml',
+        'views/product_template_views.xml',
         'data/acanto_data.xml',
         'wizard/productos_vendidos_wizard.xml',
         'security/ir.model.access.csv',
